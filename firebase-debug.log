@@ -1,0 +1,13 @@
+[debug] [2019-03-21T16:25:52.060Z] ----------------------------------------------------------------------
+[debug] [2019-03-21T16:25:52.064Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\datfc\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2019-03-21T16:25:52.064Z] CLI Version:   6.4.0
+[debug] [2019-03-21T16:25:52.064Z] Platform:      win32
+[debug] [2019-03-21T16:25:52.064Z] Node Version:  v10.13.0
+[debug] [2019-03-21T16:25:52.065Z] Time:          Thu Mar 21 2019 23:25:52 GMT+0700 (Indochina Time)
+[debug] [2019-03-21T16:25:52.065Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-03-21T16:25:52.076Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-03-21T16:25:52.077Z] > authorizing via signed-in user
+[debug] [2019-03-21T16:25:52.077Z] [iam] checking project slack-fake for permissions ["firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2019-03-21T16:25:52.079Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/slack-fake:testIamPermissions  
+
