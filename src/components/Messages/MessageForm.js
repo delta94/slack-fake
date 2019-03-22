@@ -127,13 +127,6 @@ const MessageForm = props => {
         }
       );
     }
-
-    return () => {
-      if (uploadTask !== null) {
-        uploadTask.cancal();
-        setUploadTask(null);
-      }
-    };
   }, [uploadTask]);
 
   const sendFileMessage = (fileUrl, ref, pathToUpload) => {
