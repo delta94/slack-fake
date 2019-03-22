@@ -1,44 +1,43 @@
-import React, { useEffect } from "react";
+import React, { Component } from "react";
 import { setUser, clearUser, clearChannel } from "./actions";
 import { connect } from "react-redux";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
-import { BrowserRouter as Switch, Route, withRouter } from "react-router-dom";
+import { BrowserRouter as Switch, withRouter } from "react-router-dom";
 import firebase from "./firebase";
 import App from "./components/App";
 import Spinner from "./Spinner";
-import Test from "./components/Test";
+import PrivateRouter from "./components/Auth/PrivateRouter";
+import PrivateAuth from "./components/Auth/PrivateAuth";
 
-const Root = props => {
-  useEffect(() => {
+class Root extends Component {
+  componentWillMount = () => {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        props.setUser(user);
-        props.history.push("/");
+        this.props.setUser(user);
       } else {
-        props.clearUser();
-        props.clearChannel();
-        props.history.push("/login");
+        this.props.clearUser();
+        this.props.clearChannel();
       }
     });
-  }, []);
+  };
 
-  return props.isLoading ? (
-    <Spinner />
-  ) : (
-    <Switch>
-      <Route exact path="/" component={App} />
-      <Route path="/login" component={Login} />
-      <Route path="/register" component={Register} />
-      <Route path="/test" component={Test} />
-    </Switch>
-  );
-};
+  render() {
+    return this.props.isLoading ? (
+      <Spinner />
+    ) : (
+      <Switch>
+        <PrivateRouter exact path="/" component={App} />
+        <PrivateAuth path="/login" component={Login} />
+        <PrivateAuth path="/register" component={Register} />
+      </Switch>
+    );
+  }
+}
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    isLoading: state.user.isLoading,
-    currentUser: state.user.currentUser
+    isLoading: state.user.isLoading
   };
 };
 

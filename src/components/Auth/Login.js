@@ -11,6 +11,7 @@ import {
 import { Link } from "react-router-dom";
 import firebase from "../../firebase";
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 const Login = props => {
   const [email, setEmail] = useState("");
@@ -33,7 +34,9 @@ const Login = props => {
         .signInWithEmailAndPassword(email, password)
         .then(signedInUser => {
           setLoading(false);
-          props.history.push("/");
+          setTimeout(() => {
+            props.history.push("/");
+          }, 0);
         })
         .catch(err => {
           setErrorsState(errorsState.concat(err));
@@ -108,4 +111,10 @@ const Login = props => {
   );
 };
 
-export default withRouter(Login);
+const mapStateToProps = (state, ownProps) => {
+  return {
+    currentUser: state.user.currentUser
+  };
+};
+
+export default withRouter(connect(mapStateToProps)(Login));

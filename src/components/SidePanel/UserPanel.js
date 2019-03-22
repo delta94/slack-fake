@@ -48,7 +48,9 @@ const UserPanel = props => {
       .auth()
       .signOut()
       .then(() => {
-        props.history.push("/login");
+        setTimeout(() => {
+          props.history.push("/login");
+        }, 0);
       });
   };
 
